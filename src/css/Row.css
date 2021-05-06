@@ -1,3 +1,7 @@
+.row {
+    margin-left: 20px;
+}
+
 .row_poster {
     object-fit: contain;
     width: 100%;
@@ -8,6 +12,7 @@
     opacity: 0.8;
     background: transparent;
     border-radius: 15px;
+    border-color: transparent;
 }
 
 .row_posters {
@@ -29,4 +34,5 @@
     transform: scale(1.16);
     opacity: 1;
     z-index: 100;
+    border-color: transparent;
 }
