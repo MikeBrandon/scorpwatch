@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react'
 import requests from "../requests";
 import axios from "../axios";
+import "../css/Banner.css"
 
 function Banner() {
     const [movie, setMovie] = useState([]);
@@ -17,6 +18,9 @@ function Banner() {
 
     console.log(movie);
     const bannerURL = `url("${imgBaseUrl + movie?.backdrop_path}")`;
+    function truncate(str, n) {
+        return str?.length > n ? str.substr(0,n-1) + "..." : str;
+    }
 
     return (
         <header className={"banner"} style={{
@@ -25,13 +29,15 @@ function Banner() {
             backgroundPosition: "center center"
         }}>
             <div className={"banner_contents"}>
-                <h1>{movie?.title || movie?.name}</h1>
+                <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
                 <div className={"banner_buttons"}>
                     <button className={"banner_button"}>Play</button>
                     <button className={"banner_button"}>Details</button>
                 </div>
-                <h1 className={"banner_description"}>{movie?.overview}</h1>
+                <h1 className={"banner_description"}>{truncate(movie?.overview,150)}</h1>
             </div>
+
+            <div className={"banner_fadeBottom"}/>
         </header>
     )
 }
