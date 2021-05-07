@@ -1,0 +1,11 @@
+.detail {
+    color: white;
+}
+
+.bg {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: #111111;
+}
