@@ -77,10 +77,11 @@ function Detail() {
                                 }
                                 <h1 className={"genre"}>&nbsp;★</h1>
                             </div>
+                            <h1 className={"release_length"}>{(type === "movie") ? (movie.release_date && movie.release_date.substring(0, 4)) : `${movie.number_of_seasons} Seasons`}</h1>
                             <h1 className={"banner_description"}>{movie?.overview}</h1>
                             <h1 className={"tagline"}>{movie.tagline && `“${movie?.tagline}”`}</h1>
                             <div className={"rating_div"}>
-                                <h1 className={"rating"}>★ {movie.vote_average} ({movie.vote_count.toLocaleString("en-US")}) votes</h1>
+                                <h1 className={"rating"}>★ {movie.vote_average && movie.vote_average} ({movie.vote_count && movie.vote_count.toLocaleString("en-US")}) votes</h1>
                             </div>
                         </div>
                         {
