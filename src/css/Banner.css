@@ -53,11 +53,10 @@
 }
 
 .genre {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     font-size: 0.7rem;
 }
 
 .genres {
+    margin-bottom: 20px;
     display: flex;
 }
