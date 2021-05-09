@@ -43,7 +43,7 @@ function Banner() {
             <div className={"banner_contents"}>
                 <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
                 <div className={"banner_buttons"}>
-                    <a href={movie.homepage}>
+                    <a href={movie?.homepage}>
                         <button className={"banner_button"} >Homepage</button>
                     </a>
                     <Link to={`/detail/${movie.id}/${movie?.media_type}`}>

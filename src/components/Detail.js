@@ -47,7 +47,7 @@ function Detail() {
                     <div className={"banner_contents"}>
                         <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
                         <div className={"banner_buttons"}>
-                            <a href={movie.homepage}>
+                            <a href={movie?.homepage}>
                                 <button className={"banner_button"}>Homepage</button>
                             </a>
                             <button className={"banner_button"}>Trailer</button>
@@ -65,7 +65,10 @@ function Detail() {
                             }
                             <h1 className={"genre"}>&nbsp;★</h1>
                         </div>
-                        <h1 className={"banner_description"}>{movie?.overview}</h1>
+                        <div className={"desc_div"}>
+                            <h1 className={"banner_description"}>{movie?.overview}</h1>
+                            <h1 className={"tagline"}>{`“${movie?.tagline}”`}</h1>
+                        </div>
                     </div>
                 </header>
             </div>
