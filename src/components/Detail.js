@@ -1,10 +1,13 @@
 import React , { useState, useEffect } from 'react'
 import "../css/Detail.css"
 import "../css/Banner.css"
-import {Link, useParams} from "react-router-dom"
+import { useParams} from "react-router-dom"
 import axios from "../axios";
 import img from "../logo/bg.jpg"
 import NotFound from "./NotFound";
+import YouTube from "react-youtube";
+import opts from "./YoutubeOpts";
+import movieTrailer from "movie-trailer"
 
 function Detail() {
     const { id } = useParams();
@@ -13,6 +16,7 @@ function Detail() {
     const config = "/genre/tv/list?api_key=17d6254c7dff6266e1a528c12b3b5d14";
     const [movie, setMovie] = useState([]);
     const [genres, setGenres] = useState([]);
+    const [trailerUrl, setTrailerUrl] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -46,6 +50,18 @@ function Detail() {
 
     console.log(productionCompaniesLogoPaths);
 
+    const handleClick = (movie) => {
+        if (trailerUrl) {
+            setTrailerUrl("");
+        } else {
+            movieTrailer(movie?.title, ( error, response ) => {
+                console.log(response);
+                const urlParams = new URLSearchParams(new URL(response).search);
+                setTrailerUrl(urlParams.get("v"));
+            } );
+        }
+    }
+
     return (type !== "undefined" && type !== undefined && type !== null ?
         <>
             <div className={"detail"}>
@@ -55,45 +71,55 @@ function Detail() {
                     backgroundPosition: "center center"
                 }}>
 
-                    <div className={"banner_contents"}>
-                        <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
-                        <div className={"banner_buttons"}>
-                            <a href={movie?.homepage}>
-                                <button className={"banner_button"}>Homepage</button>
-                            </a>
-                            <button className={"banner_button"}>Trailer</button>
-                        </div>
-                        <div className={"desc_div"}>
-                            <div className={"genres"}>
+                    <div className={"content"}>
+                        <div className={"banner_contents"}>
+                            <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
+                            <div className={"banner_buttons"}>
+                                <a href={movie?.homepage}>
+                                    <button className={"banner_button"}>Homepage</button>
+                                </a>
+                                {type == "movie" ?
+                                    <button className={"banner_button"} onClick={() => handleClick(movie)}>Trailer</button>
+                                : ""
+                                }
+                            </div>
+                            <div className={"desc_div"}>
+                                <div className={"genres"}>
+                                    {
+                                        movie.genre_ids?.map(genreItem => (
+                                            <h1 className={"genre"}>★&nbsp;{genresArray[genreItem]}&nbsp;</h1>
+                                        ))
+                                    }
+                                    {
+                                        movie.genres?.map(genreItem => (
+                                            <h1 className={"genre"}>★&nbsp;{genreItem.name}&nbsp;</h1>
+                                        ))
+                                    }
+                                    <h1 className={"genre"}>&nbsp;★</h1>
+                                </div>
+                                <h1 className={"release_length"}>{(type === "movie") ? (movie.release_date && movie.release_date.substring(0, 4)) : `${movie.number_of_seasons} Seasons`}</h1>
+                                <h1 className={"banner_description"}>{movie?.overview}</h1>
+                                <h1 className={"tagline"}>{movie.tagline && `“${movie?.tagline}”`}</h1>
+                                <div className={"rating_div"}>
+                                    <h1 className={"rating"}>★ {movie.vote_average && movie.vote_average} ({movie.vote_count && movie.vote_count.toLocaleString("en-US")}) votes</h1>
+                                </div>
+                            </div>
+                            <div className={"prod_companies"}>
                                 {
-                                    movie.genre_ids?.map(genreItem => (
-                                        <h1 className={"genre"}>★&nbsp;{genresArray[genreItem]}&nbsp;</h1>
+                                    productionCompaniesLogoPaths.map(path => (
+                                        <img className={"logo"} src={`${imgBaseUrl + path}`}/>
                                     ))
                                 }
-                                {
-                                    movie.genres?.map(genreItem => (
-                                        <h1 className={"genre"}>★&nbsp;{genreItem.name}&nbsp;</h1>
-                                    ))
-                                }
-                                <h1 className={"genre"}>&nbsp;★</h1>
-                            </div>
-                            <h1 className={"release_length"}>{(type === "movie") ? (movie.release_date && movie.release_date.substring(0, 4)) : `${movie.number_of_seasons} Seasons`}</h1>
-                            <h1 className={"banner_description"}>{movie?.overview}</h1>
-                            <h1 className={"tagline"}>{movie.tagline && `“${movie?.tagline}”`}</h1>
-                            <div className={"rating_div"}>
-                                <h1 className={"rating"}>★ {movie.vote_average && movie.vote_average} ({movie.vote_count && movie.vote_count.toLocaleString("en-US")}) votes</h1>
+                                <div className={"powered"}>
+                                    <img className={"tmdb"} src={"https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"}/>
+                                    <h1 className={"powered_text"}>Powered By:</h1>
+                                </div>
                             </div>
                         </div>
-                        <div className={"prod_companies"}>
-                            {
-                                productionCompaniesLogoPaths.map(path => (
-                                    <img className={"logo"} src={`${imgBaseUrl + path}`}/>
-                                ))
+                        <div className={"youtube_container"}>
+                            {trailerUrl!="" &&
+                                <YouTube className={"yt"} videoId={trailerUrl} opts={opts} />
                             }
-                            <div className={"powered"}>
-                                <img className={"tmdb"} src={"https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"}/>
-                                <h1 className={"powered_text"}>Powered By:</h1>
-                            </div>
                         </div>
                     </div>
                 </header>
