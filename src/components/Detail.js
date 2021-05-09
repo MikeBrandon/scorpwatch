@@ -35,6 +35,17 @@ function Detail() {
     const bgURL = `url("${imgBaseUrl + movie?.backdrop_path}")`;
     console.log(`/${type}/${id}?api_key=17d6254c7dff6266e1a528c12b3b5d14`)
 
+    const productionCompaniesLogoPaths = [];
+    {movie["production_companies"] &&
+        movie["production_companies"].map(company => {
+            if (company.logo_path != null) {
+                productionCompaniesLogoPaths.push(company.logo_path);
+            }
+        });
+    }
+
+    console.log(productionCompaniesLogoPaths);
+
     return (type !== "undefined" && type !== undefined && type !== null ?
         <>
             <div className={"detail"}>
@@ -52,22 +63,29 @@ function Detail() {
                             </a>
                             <button className={"banner_button"}>Trailer</button>
                         </div>
-                        <div className={"genres"}>
-                            {
-                                movie.genre_ids?.map(genreItem => (
-                                    <h1 className={"genre"}>★&nbsp;{genresArray[genreItem]}&nbsp;</h1>
-                                ))
-                            }
-                            {
-                                movie.genres?.map(genreItem => (
-                                    <h1 className={"genre"}>★&nbsp;{genreItem.name}&nbsp;</h1>
-                                ))
-                            }
-                            <h1 className={"genre"}>&nbsp;★</h1>
-                        </div>
                         <div className={"desc_div"}>
+                            <div className={"genres"}>
+                                {
+                                    movie.genre_ids?.map(genreItem => (
+                                        <h1 className={"genre"}>★&nbsp;{genresArray[genreItem]}&nbsp;</h1>
+                                    ))
+                                }
+                                {
+                                    movie.genres?.map(genreItem => (
+                                        <h1 className={"genre"}>★&nbsp;{genreItem.name}&nbsp;</h1>
+                                    ))
+                                }
+                                <h1 className={"genre"}>&nbsp;★</h1>
+                            </div>
                             <h1 className={"banner_description"}>{movie?.overview}</h1>
-                            <h1 className={"tagline"}>{`“${movie?.tagline}”`}</h1>
+                            <h1 className={"tagline"}>{movie.tagline && `“${movie?.tagline}”`}</h1>
+                        </div>
+                        <div className={"prod_companies"}>
+                            {
+                                productionCompaniesLogoPaths.map(path => (
+                                    <img className={"logo"} src={`${imgBaseUrl + path}`}/>
+                                ))
+                            }
                         </div>
                     </div>
                 </header>
