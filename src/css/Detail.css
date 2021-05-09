@@ -79,9 +79,22 @@
     flex-direction: row;
     justify-content: center;
 
-    border-radius: 0.2vw;
+    background-color: rgb(220,26,40);
+
+    border-radius: 1vw;
     margin-right: 1rem;
     margin-bottom: 10px;
     padding: 0.5rem;
     width: 100%;
+}
+
+.rating_div {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.rating {
+    font-size: 20px;
 }

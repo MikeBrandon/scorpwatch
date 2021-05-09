@@ -79,14 +79,20 @@ function Detail() {
                             </div>
                             <h1 className={"banner_description"}>{movie?.overview}</h1>
                             <h1 className={"tagline"}>{movie.tagline && `“${movie?.tagline}”`}</h1>
+                            <div className={"rating_div"}>
+                                <h1 className={"rating"}>★ {movie.vote_average} ({movie.vote_count.toLocaleString("en-US")}) votes</h1>
+                            </div>
                         </div>
-                        <div className={"prod_companies"}>
-                            {
-                                productionCompaniesLogoPaths.map(path => (
-                                    <img className={"logo"} src={`${imgBaseUrl + path}`}/>
-                                ))
-                            }
-                        </div>
+                        {
+                            productionCompaniesLogoPaths.length > 0 ?
+                                <div className={"prod_companies"}>
+                                    {
+                                        productionCompaniesLogoPaths.map(path => (
+                                            <img className={"logo"} src={`${imgBaseUrl + path}`}/>
+                                        ))
+                                    }
+                                </div> : ""
+                        }
                     </div>
                 </header>
             </div>
