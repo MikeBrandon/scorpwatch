@@ -8,4 +8,36 @@
     width: 100%;
     position: fixed;
     background-color: #111111;
+    background-image: url('../logo/bg.jpg');
+}
+
+.not_found {
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 1vw;
+    align-self: center;
+    background-color: rgba(51, 51, 51, 0.8);
+    padding: 0.5rem 2rem;
+    height: 50%;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 10%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.description {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
 }

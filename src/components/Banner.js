@@ -2,19 +2,21 @@ import React, { useState , useEffect } from 'react'
 import requests from "../requests";
 import axios from "../axios";
 import "../css/Banner.css"
+import {Link} from "react-router-dom";
 
 function Banner() {
     const [movie, setMovie] = useState([]);
     const [genres, setGenres] = useState([]);
     const imgBaseUrl = "https://image.tmdb.org/t/p/original";
     const config = "/genre/tv/list?api_key=17d6254c7dff6266e1a528c12b3b5d14";
+    const watchType = ((Math.floor(Math.random() * 2) + 1 ) === 1) ? "movie" : "tv";
 
     useEffect(() => {
         async function fetchData() {
-            const request = await axios.get(requests.fetchTrendingShows);
+            const request = await axios.get((watchType === "tv") ? requests.fetchTrendingShows : requests.fetchTrendingMovies);
             const genreRequest = await axios.get(config)
             setMovie(request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]);
-            setGenres(genreRequest.data.genres);
+            setGenres(genreRequest.data.genres || genreRequest.data.genre_ids);
             return request;
         }
         fetchData();
@@ -41,12 +43,21 @@ function Banner() {
             <div className={"banner_contents"}>
                 <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
                 <div className={"banner_buttons"}>
-                    <button className={"banner_button"}>Play</button>
-                    <button className={"banner_button"}>Details</button>
+                    <Link to={`/`}>
+                        <button className={"banner_button"} >Play</button>
+                    </Link>
+                    <Link to={`/detail/${movie.id}/${movie.media_type}`}>
+                        <button className={"banner_button"}>Details</button>
+                    </Link>
                 </div>
                 <div className={"genres"}>
                     {
                         movie.genre_ids?.map(genreItem => (
+                            <h1 className={"genre"}>★&nbsp;{genresArray[genreItem]}&nbsp;</h1>
+                        ))
+                    }
+                    {
+                        movie.genres?.map(genreItem => (
                             <h1 className={"genre"}>★&nbsp;{genresArray[genreItem]}&nbsp;</h1>
                         ))
                     }

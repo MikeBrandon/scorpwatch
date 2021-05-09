@@ -3,6 +3,8 @@ import "../css/Detail.css"
 import "../css/Banner.css"
 import { useParams } from "react-router-dom"
 import axios from "../axios";
+import img from "../logo/bg.jpg"
+import NotFound from "./NotFound";
 
 function Detail() {
     const { id } = useParams();
@@ -33,7 +35,7 @@ function Detail() {
     const bgURL = `url("${imgBaseUrl + movie?.backdrop_path}")`;
     console.log(`/${type}/${id}?api_key=17d6254c7dff6266e1a528c12b3b5d14`)
 
-    return (
+    return (type !== "undefined" && type !== undefined && type !== null ?
         <>
             <div className={"detail"}>
                 <header className={"bg"} style={{
@@ -66,6 +68,12 @@ function Detail() {
                 </header>
             </div>
         </>
+            :
+            <>
+                <div className={"detail"}>
+                    <NotFound />
+                </div>
+            </>
     )
 }
 
