@@ -43,10 +43,10 @@ function Banner() {
             <div className={"banner_contents"}>
                 <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
                 <div className={"banner_buttons"}>
-                    <Link to={`/`}>
-                        <button className={"banner_button"} >Play</button>
-                    </Link>
-                    <Link to={`/detail/${movie.id}/${movie.media_type}`}>
+                    <a href={movie.homepage}>
+                        <button className={"banner_button"} >Homepage</button>
+                    </a>
+                    <Link to={`/detail/${movie.id}/${movie?.media_type}`}>
                         <button className={"banner_button"}>Details</button>
                     </Link>
                 </div>

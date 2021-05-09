@@ -2,6 +2,7 @@ import React , { useEffect , useState } from 'react'
 import logo from "../logo/netflix_logo.png"
 import profile from "../logo/profile2.png"
 import "../css/Nav.css"
+import {Link} from "react-router-dom";
 
 function Nav() {
     const [show, handleShow] = useState(false);
@@ -21,16 +22,16 @@ function Nav() {
 
     return (
         <div className={`nav ${show && "nav_black"}`}>
+            <Link to={"/"}>
+                <img
+                    className={"nav_logo"}
+                    src={logo}
+                    alt={"scorp_watch"}/>
+            </Link>
             <img
-            className={"nav_logo"}
-            src={logo}
-            alt={"scorp_watch"}/>
-
-            <img
-            className={"nav_avatar"}
-            src={profile}
-            alt={"avatar"}/>
-
+                className={"nav_avatar"}
+                src={profile}
+                alt={"avatar"}/>
         </div>
     )
 }

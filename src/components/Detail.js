@@ -1,7 +1,7 @@
 import React , { useState, useEffect } from 'react'
 import "../css/Detail.css"
 import "../css/Banner.css"
-import { useParams } from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import axios from "../axios";
 import img from "../logo/bg.jpg"
 import NotFound from "./NotFound";
@@ -47,7 +47,9 @@ function Detail() {
                     <div className={"banner_contents"}>
                         <h1 className={"banner_title"}>{movie?.title || movie?.name}</h1>
                         <div className={"banner_buttons"}>
-                            <button className={"banner_button"}>Play</button>
+                            <a href={movie.homepage}>
+                                <button className={"banner_button"}>Homepage</button>
+                            </a>
                             <button className={"banner_button"}>Trailer</button>
                         </div>
                         <div className={"genres"}>
