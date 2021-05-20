@@ -13,7 +13,7 @@ function Detail() {
     const { id } = useParams();
     const { type } = useParams();
     const imgBaseUrl = "https://image.tmdb.org/t/p/original";
-    const config = "/genre/tv/list?api_key=17d6254c7dff6266e1a528c12b3b5d14";
+    const config = `/genre/${type}/list?api_key=17d6254c7dff6266e1a528c12b3b5d14`;
     const [movie, setMovie] = useState([]);
     const [genres, setGenres] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState([]);

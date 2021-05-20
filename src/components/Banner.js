@@ -8,8 +8,8 @@ function Banner() {
     const [movie, setMovie] = useState([]);
     const [genres, setGenres] = useState([]);
     const imgBaseUrl = "https://image.tmdb.org/t/p/original";
-    const config = "/genre/tv/list?api_key=17d6254c7dff6266e1a528c12b3b5d14";
     const watchType = ((Math.floor(Math.random() * 2) + 1 ) === 1) ? "movie" : "tv";
+    const config = `/genre/${watchType}/list?api_key=17d6254c7dff6266e1a528c12b3b5d14`;
 
     useEffect(() => {
         async function fetchData() {
