@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import Detail from "./components/Detail";
 import { BrowserRouter as Router, Switch , Route} from "react-router-dom";
 import Home from "./components/Home";
+import Genre from "./components/Genre";
 
 function App() {
   return (
@@ -14,11 +15,11 @@ function App() {
                 <Route path={"/detail/:id/:type"}>
                     <Detail/>
                 </Route>
+                <Route path={"/genre/:type/:id/:page"}>
+                    <Genre/>
+                </Route>
                 <Route path={"/"}>
                     <Home/>
-                </Route>
-                <Route path={"/genre/:type/:id/:page"}>
-
                 </Route>
             </Switch>
         </Router>

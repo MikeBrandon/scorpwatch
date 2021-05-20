@@ -21,9 +21,6 @@ function GenreRow({type}) {
         fetchData()
     },[])
 
-    console.log(tvGenres)
-    console.log(movieGenres)
-
     return (
         <div className="genre_row">
             <h2>{capitalizeFirstLetter(`${type} Genres`)}</h2>

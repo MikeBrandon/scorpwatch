@@ -1,0 +1,39 @@
+.genre_page {
+    color: white;
+    background: #111111;
+}
+
+.header {
+    color: white;
+    height: 224px;
+    object-fit: contain;
+}
+
+.content {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.row_poster {
+
+}
+
+.powered {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.genre_title {
+    text-align: center;
+    padding: 1rem;
+}

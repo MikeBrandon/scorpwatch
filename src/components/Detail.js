@@ -34,10 +34,7 @@ function Detail() {
         genresArray[item.id] = item.name;
     })
 
-    console.log(genres);
-    console.log(movie);
     const bgURL = `url("${imgBaseUrl + movie?.backdrop_path}")`;
-    console.log(`/${type}/${id}?api_key=17d6254c7dff6266e1a528c12b3b5d14`)
 
     const productionCompaniesLogoPaths = [];
     {movie["production_companies"] &&
@@ -47,8 +44,6 @@ function Detail() {
             }
         });
     }
-
-    console.log(productionCompaniesLogoPaths);
 
     const handleClick = (movie) => {
         if (trailerUrl) {
