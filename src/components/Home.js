@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from "./Banner";
 import Row from "./Row";
 import requests from "../requests";
+import GenreRow from "./GenreRow";
 
 function Home() {
     return (
@@ -9,6 +10,8 @@ function Home() {
             <Banner/>
             <Row title="Trending Movies" fetchUrl={requests.fetchTrendingMovies} type={"movie"}/>
             <Row title="Trending Shows" fetchUrl={requests.fetchTrendingShows} type={"tv"}/>
+            <GenreRow type={"movie"}/>
+            <GenreRow type={"tv"}/>
             <Row title="Top Rated Movies" fetchUrl={requests.fetchTopRatedMovies} type={"movie"}/>
             <Row title="Top Rated Shows" fetchUrl={requests.fetchTopRatedShows} type={"tv"}/>
         </div>

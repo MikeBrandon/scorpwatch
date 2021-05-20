@@ -17,6 +17,9 @@ function App() {
                 <Route path={"/"}>
                     <Home/>
                 </Route>
+                <Route path={"/genre/:type/:id/:page"}>
+
+                </Route>
             </Switch>
         </Router>
     </div>
